@@ -6,14 +6,10 @@ import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('Document loaded');
-  Notiflix.Loading.standard('Loading data, please wait...', {
-    backgroundColor: 'rgba(0,0,0,0.8)',
-  });
 
   try {
     const breeds = await fetchBreeds();
 
-    Notiflix.Loading.remove();
     const breedSelect = document.querySelector('.breed-select');
     let select;
 
@@ -34,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log('SlimSelect initialized: ', select);
     console.log('SlimSelect data: ', select.data.getData());
   } catch (error) {
-    Notiflix.Loading.remove();
     Notiflix.Notify.failure(
       'Oops! Something went wrong! Try reloading the page!'
     );
@@ -43,9 +38,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   function displayCatInfo(breedId) {
     console.log('About to fetch cat by breed');
     console.log('displayCatInfo', breedId);
-    Notiflix.Loading.standard('Loading data, please wait...', {
-      backgroundColor: 'rgba(0,0,0,0.8)',
-    });
+
+    Notiflix.Loading.hourglass('Loading data, please wait...');
 
     fetchCatByBreed(breedId)
       .then(cat => {
@@ -63,7 +57,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log(catInfo);
       })
       .catch(error => {
-        console.log(error.response);
+        console.error('fetchCatByBreed error', error.response);
         Notiflix.Loading.remove();
         Notiflix.Notify.failure(
           'Oops! Something went wrong! Try reloading the page!'

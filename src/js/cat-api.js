@@ -1,3 +1,6 @@
+'use strict';
+console.log('Starting script');
+
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
 import axios from 'axios';
@@ -12,7 +15,7 @@ async function fetchBreeds() {
     console.log('axios get completed', response.data);
     return response.data;
   } catch (error) {
-    console.error('fetchBreeds error', error.response);
+    console.log('fetchBreeds error', error.response);
     Notiflix.Notify.failure(
       'Oops! Something went wrong! Try reloading the page!'
     );
