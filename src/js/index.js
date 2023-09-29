@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     console.log('SlimSelect initialized: ', select);
-    console.log('SlimSelect data: ', select.data.getData());
   } catch (error) {
     Notiflix.Notify.failure(
       'Oops! Something went wrong! Try reloading the page!'
